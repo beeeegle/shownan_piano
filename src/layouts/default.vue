@@ -1,6 +1,6 @@
 <template>
-  <v-app>
-    <!-- <AppHeader /> -->
+  <v-app v-scroll="onScroll">
+    <AppHeader />
 
     <v-main>
       <router-view />

@@ -28,50 +28,50 @@
 </template>
 
 <script setup lang="ts">
-  import { onMounted, ref } from 'vue'
-  import { gsap } from 'gsap'
-  import { ScrollTrigger } from 'gsap/ScrollTrigger'
+  // import { onMounted, ref } from 'vue'
+  // import { gsap } from 'gsap'
+  // import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-  gsap.registerPlugin(ScrollTrigger)
+  // gsap.registerPlugin(ScrollTrigger)
 
-  const titleRef = ref<HTMLElement | null>(null)
-  const subtitleRef = ref<HTMLElement | null>(null)
-  const bentoRef = ref<HTMLElement | null>(null)
+  // const titleRef = ref<HTMLElement | null>(null)
+  // const subtitleRef = ref<HTMLElement | null>(null)
+  // const bentoRef = ref<HTMLElement | null>(null)
 
-  onMounted(() => {
-    const tl = gsap.timeline()
+  // onMounted(() => {
+  //   const tl = gsap.timeline()
     
-    if (titleRef.value && subtitleRef.value) {
-      tl.from(titleRef.value, {
-        opacity: 0,
-        y: 30,
-        duration: 1.2,
-        ease: "power3.out"
-      })
-      .from(subtitleRef.value, {
-        opacity: 0,
-        y: 20,
-        duration: 1,
-        ease: "power3.out"
-      }, "-=0.8")
-    }
+  //   if (titleRef.value && subtitleRef.value) {
+  //     tl.from(titleRef.value, {
+  //       opacity: 0,
+  //       y: 30,
+  //       duration: 1.2,
+  //       ease: "power3.out"
+  //     })
+  //     .from(subtitleRef.value, {
+  //       opacity: 0,
+  //       y: 20,
+  //       duration: 1,
+  //       ease: "power3.out"
+  //     }, "-=0.8")
+  //   }
 
-    if (bentoRef.value) {
-      gsap.from(".bento-card", {
-        scrollTrigger: {
-          trigger: bentoRef.value,
-          start: "top 85%",
-          toggleActions: "play none none reverse"
-        },
-        opacity: 0,
-        scale: 0.95,
-        y: 40,
-        stagger: 0.15,
-        duration: 0.8,
-        ease: "back.out(1.7)"
-      })
-    }
-  })
+  //   if (bentoRef.value) {
+  //     gsap.from(".bento-card", {
+  //       scrollTrigger: {
+  //         trigger: bentoRef.value,
+  //         start: "top 85%",
+  //         toggleActions: "play none none reverse"
+  //       },
+  //       opacity: 0,
+  //       scale: 0.95,
+  //       y: 40,
+  //       stagger: 0.15,
+  //       duration: 0.8,
+  //       ease: "back.out(1.7)"
+  //     })
+  //   }
+  // })
 </script>
 
 <style scoped>

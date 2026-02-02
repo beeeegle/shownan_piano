@@ -17,7 +17,7 @@
   >
     <div class="text-h6 font-weight-bold mb-6">Menu</div>
 
-    <v-list nav>
+    <!-- <v-list nav>
       <v-list-item
         color="primary"
         :prepend-icon="mdiEarth"
@@ -38,14 +38,14 @@
         rounded="lg"
         :title="RANKING_LABELS.abouts[langStore.lang]"
         to="/about"
-      />
+      /> -->
       <!-- <v-list-item
         :prepend-icon="mdiEmailOutline"
         rounded="lg"
         :title="RANKING_LABELS.postingReq[langStore.lang]"
         to="/request"
       /> -->
-    </v-list>
+    <!-- </v-list> -->
   </v-navigation-drawer>
 </template>
 
@@ -59,7 +59,7 @@
   const route = useRoute()
   const drawer = ref(false)
   const activeTab = ref(route.path.includes('avatars') ? 'avatars' : 'worlds')
-  const langStore = useLangStore()
+  // const langStore = useLangStore()
 
   watch(() => route.path, (newPath: string) => {
     activeTab.value = newPath.includes('avatars') ? 'avatars' : 'worlds'
