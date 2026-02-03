@@ -1,130 +1,147 @@
 <template>
-  <v-app-bar flat class="header-blur">
-    <v-app-bar-title class="font-weight-bold">湘南国際音楽コンクール</v-app-bar-title>
+  <v-app-bar flat class="header-blur px-md-4" height="80">
+    <v-app-bar-title>
+      <router-link to="/" class="no-style-link brand-logo">
+        <span class="text-h6 font-weight-bold letter-spacing-2">SHONAN</span>
+        <span class="text-caption d-block mt-n1 opacity-70">International Music Competition</span>
+      </router-link>
+    </v-app-bar-title>
+
     <v-spacer />
-    <v-btn variant="text" to="/about">ABOUT</v-btn>
-    <v-btn variant="text" to="/jurors">JURORS</v-btn>
-    <v-btn variant="flat" color="primary" class="ml-2">APPLICATION</v-btn>
+
+    <div class="nav-wrapper d-none d-md-flex">
+      <v-tabs
+        v-model="activeTab"
+        class="main-tabs"
+        hide-slider
+      >
+        <v-tab to="/about" class="nav-tab">ABOUT</v-tab>
+        <v-tab to="/jurors" class="nav-tab">JURORS</v-tab>
+        <v-tab to="/history" class="nav-tab">HISTORY</v-tab>
+        <v-tab to="/news" class="nav-tab">NEWS</v-tab>
+      </v-tabs>
+    </div>
+
+    <v-spacer />
+
+    <div class="d-flex align-center ga-3">
+      <v-btn
+        size="small"
+        variant="text"
+        class="lang-toggle-btn"
+        @click="langStore.toggle()"
+      >
+        <v-icon start icon="mdi-translate" size="small"></v-icon>
+        {{ langStore.lang === 'jp' ? 'EN' : 'JP' }}
+      </v-btn>
+
+      <v-btn
+        color="primary"
+        variant="flat"
+        rounded="pill"
+        class="font-weight-bold px-6 d-none d-sm-flex"
+        to="/application"
+      >
+        APPLY
+      </v-btn>
+
+      <v-app-bar-nav-icon class="d-md-none" @click="drawer = !drawer" />
+    </div>
   </v-app-bar>
 
   <v-navigation-drawer
     v-model="drawer"
-    app
-    :class="{ 'is-hidden': !drawer }"
     location="right"
     temporary
-    touchless
+    class="drawer-glass"
+    width="300"
   >
-    <div class="text-h6 font-weight-bold mb-6">Menu</div>
-
-    <!-- <v-list nav>
-      <v-list-item
-        color="primary"
-        :prepend-icon="mdiEarth"
-        rounded="lg"
-        :title="RANKING_LABELS.world[langStore.lang]"
-        to="/worlds"
-      />
-      <v-list-item
-        color="primary"
-        :prepend-icon="mdiHanger"
-        rounded="lg"
-        :title="RANKING_LABELS.avatar[langStore.lang]"
-        to="/avatars"
-      />
-      <v-divider class="my-4" />
-      <v-list-item
-        :prepend-icon="mdiInformationOutline"
-        rounded="lg"
-        :title="RANKING_LABELS.abouts[langStore.lang]"
-        to="/about"
-      /> -->
-      <!-- <v-list-item
-        :prepend-icon="mdiEmailOutline"
-        rounded="lg"
-        :title="RANKING_LABELS.postingReq[langStore.lang]"
-        to="/request"
-      /> -->
-    <!-- </v-list> -->
+    <div class="pa-6">
+      <div class="d-flex justify-space-between align-center mb-10">
+        <span class="text-h6 font-weight-bold text-primary">MENU</span>
+        <v-btn icon="mdi-close" variant="text" @click="drawer = false"></v-btn>
+      </div>
+      
+      <v-list nav class="bg-transparent">
+        <v-list-item to="/about" title="ABOUT" class="mb-2" />
+        <v-list-item to="/jurors" title="JURORS" class="mb-2" />
+        <v-list-item to="/history" title="HISTORY" class="mb-2" />
+        <v-list-item to="/news" title="NEWS" class="mb-2" />
+        <v-divider class="my-6 opacity-10" />
+        <v-list-item to="/contact" title="CONTACT" />
+      </v-list>
+    </div>
   </v-navigation-drawer>
 </template>
 
 <script setup lang="ts">
-  import { mdiEarth, mdiHanger, mdiInformationOutline } from '@mdi/js'
-  import { ref, watch } from 'vue'
-  import { useRoute } from 'vue-router'
-  // import { RANKING_LABELS } from '@/constants/labels'
-  // import { useLangStore } from '@/stores/lang'
+  import { ref } from 'vue'
+  import { useLangStore } from '@/stores/lang'
 
-  const route = useRoute()
   const drawer = ref(false)
-  const activeTab = ref(route.path.includes('avatars') ? 'avatars' : 'worlds')
-  // const langStore = useLangStore()
-
-  watch(() => route.path, (newPath: string) => {
-    activeTab.value = newPath.includes('avatars') ? 'avatars' : 'worlds'
-    drawer.value = false
-  })
+  const activeTab = ref(null)
+  const langStore = useLangStore()
 </script>
 
 <style scoped lang="sass">
-/* ドロワーが閉じている時は、物理的に画面から消し去る */
-.v-navigation-drawer.is-hidden
-  visibility: hidden !important
-  pointer-events: none !important
+$accent-gold: #D4AF37
+$glass-bg: rgba(17, 17, 17, 0.8)
+
+.header-blur
+  background: $glass-bg !important
+  backdrop-filter: blur(12px)
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important
+
 .brand-logo
-  letter-spacing: -1px
-  font-family: 'Inter', sans-serif
+  font-family: "Noto Serif JP", serif
+  color: #fff
+  .letter-spacing-2
+    letter-spacing: 2px
 
-/* ナビゲーションを包むカプセルの背景 */
-.nav-wrapper
-  display: flex
-  align-items: center
-
+/* ナビゲーションカプセル */
 .main-tabs
-  background: rgba(255, 255, 255, 0.05) // 非常に薄い白
+  background: rgba(255, 255, 255, 0.03)
   border-radius: 50px
   padding: 4px
-  height: 48px !important
-  border: 1px solid rgba(255, 255, 255, 0.1) // 薄い枠線で形を出す
+  height: 52px !important
+  border: 1px solid rgba(255, 255, 255, 0.08)
 
 .nav-tab
-  height: 40px !important
-  min-width: 110px
-  font-weight: 700
-  letter-spacing: 0
-  border-radius: 40px !important // カプセルの中身も丸く
-  color: rgba(255, 255, 255, 0.6) !important // 通常時は薄い白文字
-  transition: all 0.2s ease
-  text-transform: none
+  height: 44px !important
+  min-width: 100px
+  font-weight: 500
+  font-size: 0.85rem
+  letter-spacing: 1px
+  border-radius: 40px !important
+  color: rgba(255, 255, 255, 0.5) !important
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1)
+  text-transform: uppercase
 
-  /* 選択されていない時のホバー */
   &:hover
-    color: #fff !important
-    background: rgba(255, 255, 255, 0.05)
+    color: $accent-gold !important
+    background: rgba($accent-gold, 0.05)
 
-  /* 【重要】アクティブ（選択中）のスタイル */
   &.v-tab--selected
-    background: rgba(255, 255, 255, 0.15) !important // ここが真っ白にならないよう調整
-    color: #fff !important // 文字ははっきり白
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2)
+    background: rgba($accent-gold, 0.15) !important
+    color: $accent-gold !important
+    font-weight: 700
 
-// サイト全体の a タグ（router-link）のデフォルトをリセット
-a
-  text-decoration: none
-  color: inherit
-  transition: opacity 0.2s ease
-
+/* 言語切替ボタン */
+.lang-toggle-btn
+  color: rgba(255, 255, 255, 0.7) !important
+  font-size: 0.75rem
+  letter-spacing: 1px
   &:hover
-    opacity: 0.8
+    color: $accent-gold !important
 
-  &:visited, &:active, &:focus
-    color: inherit
-    outline: none
+/* モバイルドロワー */
+.drawer-glass
+  background: rgba(17, 17, 17, 0.95) !important
+  backdrop-filter: blur(20px)
+  border-left: 1px solid rgba(255, 255, 255, 0.1) !important
 
-// ロゴなど、ホバー時の透明度変化も無効化したい場合
 .no-style-link
-  opacity: 1 !important
+  text-decoration: none
   &:hover
-    opacity: 1 !important
+    opacity: 1
 </style>
