@@ -3,7 +3,7 @@
     <AppHeader />
 
     <v-main class="main-content">
-      <v-container fluid class="pa-0">
+      <v-container class="pa-0" fluid>
         <router-view v-slot="{ Component }">
           <v-fade-transition mode="out-in">
             <component :is="Component" />
@@ -66,7 +66,7 @@ $base-black: #0a0a0a
   bottom: 40px !important
   right: 40px !important
   z-index: 9999 !important
-  
+
   // 2026年トレンド：グラスモーフィズムとネオン
   background: rgba($accent-gold, 0.1) !important
   backdrop-filter: blur(8px)
@@ -75,7 +75,7 @@ $base-black: #0a0a0a
   width: 56px !important
   height: 56px !important
   border-radius: 16px !important // 完全な円より少し角丸が今っぽい
-  
+
   transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1) !important
 
   &:hover

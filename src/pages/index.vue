@@ -168,10 +168,13 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, onMounted } from 'vue'
-  import { mdiArrowRight, mdiHistory } from '@mdi/js'
+  import {
+    mdiArrowRight,
+    mdiHistory,
+  } from '@mdi/js'
   import { gsap } from 'gsap'
   import { ScrollTrigger } from 'gsap/ScrollTrigger'
+  import { onMounted, ref } from 'vue'
 
   // GSAPプラグインの登録
   gsap.registerPlugin(ScrollTrigger)
@@ -181,32 +184,32 @@
     id: '2026-spring',
     count: '4',
     year: '2026',
-    active: true 
+    active: true,
   })
 
   const scheduleItems = [
     { date: '2026.11.01', event: 'Opening Ceremony & 1st Round' },
     { date: '2026.11.05', event: '2nd Round' },
     { date: '2026.11.10', event: 'Final Round' },
-    { date: '2026.11.15', event: 'Winners Concert' }
+    { date: '2026.11.15', event: 'Winners Concert' },
   ]
 
   const historyCards = [
-    { 
-      year: '2025', count: '3', title: '海風のセレナーデ', 
+    {
+      year: '2025', count: '3', title: '海風のセレナーデ',
       desc: '世界20カ国から才能が集結。湘南の空の下、新たな歴史が刻まれました。',
-      image: 'https://picsum.photos/400/300?music=10' 
+      image: 'https://picsum.photos/400/300?music=10',
     },
-    { 
-      year: '2024', count: '2', title: '輝く才能の共演', 
+    {
+      year: '2024', count: '2', title: '輝く才能の共演',
       desc: '若きピアニストたちの情熱がホールを包み込み、満員御礼の感動を呼びました。',
-      image: 'https://picsum.photos/400/300?music=11' 
+      image: 'https://picsum.photos/400/300?music=11',
     },
-    { 
-      year: '2023', count: '1', title: '創設記念コンクール', 
+    {
+      year: '2023', count: '1', title: '創設記念コンクール',
       desc: '湘南国際音楽コンクールの第一歩。ここから多くの音楽家が羽ばたいていきました。',
-      image: 'https://picsum.photos/400/300?music=12' 
-    }
+      image: 'https://picsum.photos/400/300?music=12',
+    },
   ]
 
   // --- 2. Template Refs (DOM要素への参照) ---
@@ -220,20 +223,20 @@
   onMounted(() => {
     // A. Hero Section タイムライン
     const heroTl = gsap.timeline()
-    
+
     heroTl.from([countRef.value, titleRef.value, subtitleRef.value], {
       y: 40,
       opacity: 0,
       duration: 1.5,
       stagger: 0.2,
-      ease: "power4.out"
+      ease: 'power4.out',
     })
-    .from(actionRef.value, {
-      scale: 0.9,
-      opacity: 0,
-      duration: 1,
-      ease: "back.out(1.7)"
-    }, "-=0.8")
+      .from(actionRef.value, {
+        scale: 0.9,
+        opacity: 0,
+        duration: 1,
+        ease: 'back.out(1.7)',
+      }, '-=0.8')
 
     // B. ScrollTriggerによるセクション一括制御
     const sections = gsap.utils.toArray('.section-spacer')

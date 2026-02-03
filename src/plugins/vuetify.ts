@@ -19,17 +19,13 @@ export default createVuetify({
     defaultTheme: 'myCustomTheme',
     themes: {
       myCustomTheme: {
-        dark: true, // ここを true にすると Vuetify が自動で文字色を白系に調整します
+        dark: true,
         colors: {
-          primary: '#D4AF37',   // ゴールド
-          secondary: '#1A1A1B', // 墨色
-          background: '#111111', // 背景を深い黒へ
-          surface: '#1E1E1E',   // カードなどの表面色
-          error: '#FF5252',
-          info: '#94A3B8',
-          success: '#4CAF50',
-          warning: '#FFC107',
-          // テキスト色を明示的に指定する場合
+          'primary': '#D4AF37',
+          'secondary': '#1A1A1B',
+          'background': '#111111',
+          'surface': '#1E1E1E',
+          'info': '#94A3B8',
           'on-background': '#F8F9FA',
           'on-surface': '#F8F9FA',
         },

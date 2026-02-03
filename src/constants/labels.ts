@@ -2,7 +2,11 @@
 export const RANKING_LABELS = {
   new: {
     jp: '新着',
-    en: 'New',
+    en: 'NEW',
+  },
+  shonan: {
+    jp: '湘南',
+    en: 'Shonan',
   },
   overall: {
     jp: '総合',

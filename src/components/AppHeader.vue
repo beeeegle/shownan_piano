@@ -1,7 +1,7 @@
 <template>
-  <v-app-bar flat class="header-blur px-md-4" height="80">
+  <v-app-bar class="header-blur px-md-4" flat height="80">
     <v-app-bar-title>
-      <router-link to="/" class="no-style-link brand-logo">
+      <router-link class="no-style-link brand-logo" to="/">
         <span class="text-h6 font-weight-bold letter-spacing-2">SHONAN</span>
         <span class="text-caption d-block mt-n1 opacity-70">International Music Competition</span>
       </router-link>
@@ -15,10 +15,11 @@
         class="main-tabs"
         hide-slider
       >
-        <v-tab to="/about" class="nav-tab">ABOUT</v-tab>
-        <v-tab to="/jurors" class="nav-tab">JURORS</v-tab>
-        <v-tab to="/history" class="nav-tab">HISTORY</v-tab>
-        <v-tab to="/news" class="nav-tab">NEWS</v-tab>
+        <v-tab class="nav-tab" to="/about">ABOUT</v-tab>
+        <v-tab class="nav-tab" to="/jurors">JURORS</v-tab>
+        <v-tab class="nav-tab" to="/history">HISTORY</v-tab>
+        <v-tab class="nav-tab" to="/news">NEWS</v-tab>
+        <!-- <v-tab class="nav-tab" to="/news">{{ RANKING_LABELS.new[langStore.lang] }}</v-tab> -->
       </v-tabs>
     </div>
 
@@ -26,12 +27,12 @@
 
     <div class="d-flex align-center ga-3">
       <v-btn
+        class="lang-toggle-btn"
         size="small"
         variant="text"
-        class="lang-toggle-btn"
         @click="langStore.toggle()"
       >
-        <v-icon start icon="mdi-translate" size="small"></v-icon>
+        <v-icon start :icon="mdiTranslate" size="small"></v-icon>
         {{ langStore.lang === 'jp' ? 'EN' : 'JP' }}
       </v-btn>
 
@@ -61,7 +62,7 @@
         <span class="text-h6 font-weight-bold text-primary">MENU</span>
         <v-btn icon="mdi-close" variant="text" @click="drawer = false"></v-btn>
       </div>
-      
+
       <v-list nav class="bg-transparent">
         <v-list-item to="/about" title="ABOUT" class="mb-2" />
         <v-list-item to="/jurors" title="JURORS" class="mb-2" />
@@ -75,7 +76,12 @@
 </template>
 
 <script setup lang="ts">
+  import {
+    mdiTranslate,
+    mdiHistory,
+  } from '@mdi/js'
   import { ref } from 'vue'
+  import { RANKING_LABELS } from '@/constants/labels'
   import { useLangStore } from '@/stores/lang'
 
   const drawer = ref(false)
