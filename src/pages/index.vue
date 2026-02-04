@@ -1,5 +1,5 @@
 <template>
-<section ref="heroRef" class="hero-section d-flex align-center justify-center">
+  <section ref="heroRef" class="hero-section d-flex align-center justify-center">
     <div class="hero-content text-center">
       <div ref="countRef" class="text-overline gold-text mb-2">
         — 第{{ currentCompetition.count }}回 開催 —
@@ -14,15 +14,15 @@
 
       <div v-if="currentCompetition.active" ref="actionRef">
         <v-btn
-          :to="`/competitions/${currentCompetition.id}`"
-          color="primary"
-          variant="outlined"
-          size="x-large"
-          rounded="pill"
           class="hero-action-btn px-10"
+          color="primary"
+          rounded="pill"
+          size="x-large"
+          :to="`/competitions/${currentCompetition.id}`"
+          variant="outlined"
         >
           VIEW DETAILS
-          <v-icon :icon="mdiArrowRight" end />
+          <v-icon end :icon="mdiArrowRight" />
         </v-btn>
         <p class="text-caption mt-4 opacity-60">
           現在、本選へのエントリーを受け付けています
@@ -34,7 +34,7 @@
   <v-container class="py-12 main-container">
     <section class="section-spacer text-center">
       <v-row justify="center">
-        <v-col cols="12" md="8" class="concept-text">
+        <v-col class="concept-text" cols="12" md="8">
           <p>湘南国際音楽コンクールは、美しい日本・湘南地域を拠点に誕生した新しいクラシック音楽のコンクールです。</p>
           <p>若き才能を支え、芸術的な交流を促進し、世界中の音楽家たちをつなぐことを目指しています。</p>
           <p>音楽の力を共に分かち合いましょう。</p>
@@ -51,11 +51,11 @@
           </v-card>
         </v-col>
         <v-col cols="12" md="4">
-          <v-card class="bento-card mb-4" height="192" hover color="primary">
+          <v-card class="bento-card mb-4" color="primary" height="192" hover>
             <v-card-title>Important Notice</v-card-title>
             <v-card-text>応募要項を公開しました</v-card-text>
           </v-card>
-          <v-card class="bento-card" height="192" hover color="secondary">
+          <v-card class="bento-card" color="secondary" height="192" hover>
             <v-card-title>Media</v-card-title>
             <v-card-text>公式YouTubeチャンネル開設</v-card-text>
           </v-card>
@@ -64,20 +64,20 @@
 
       <div class="d-flex justify-center mt-10">
         <v-btn
-          to="/news"
-          variant="outlined"
-          color="primary"
           class="view-more-btn px-10"
+          color="primary"
           rounded="xl"
           size="large"
+          to="/news"
+          variant="outlined"
         >
           View more
-          <v-icon :icon="mdiArrowRight" end />
+          <v-icon end :icon="mdiArrowRight" />
         </v-btn>
       </div>
     </section>
 
-    <section class="section-spacer" ref="scheduleRef">
+    <section ref="scheduleRef" class="section-spacer">
       <h2 class="text-h4 font-weight-bold mb-8 text-center section-title">Schedule</h2>
       <v-card class="bento-card pa-6">
         <v-table class="bg-transparent text-white">
@@ -97,34 +97,34 @@
       </v-card>
       <div class="d-flex justify-center mt-10">
         <v-btn
-          to="/news"
-          variant="outlined"
-          color="primary"
           class="view-more-btn px-10"
+          color="primary"
           rounded="xl"
           size="large"
+          to="/news"
+          variant="outlined"
         >
           View more
-          <v-icon :icon="mdiArrowRight" end />
+          <v-icon end :icon="mdiArrowRight" />
         </v-btn>
       </div>
     </section>
 
-    <section class="section-spacer" ref="historyRef">
+    <section ref="historyRef" class="section-spacer">
       <h2 class="text-h4 font-weight-bold mb-8 text-center section-title">History</h2>
-      
+
       <v-row>
         <v-col v-for="h in historyCards" :key="h.year" cols="12" md="4">
           <v-card class="bento-card history-card" hover :to="`/history/${h.year}`">
             <v-img
-              :src="h.image"
-              height="200"
-              cover
               class="align-end"
+              cover
+              height="200"
+              :src="h.image"
             >
               <v-card-title class="text-white bg-black-transition">{{ h.year }}</v-card-title>
             </v-img>
-            
+
             <v-card-text class="pa-4">
               <div class="text-overline text-primary">第{{ h.count }}回大会</div>
               <div class="text-h6 font-weight-bold mb-2">{{ h.title }}</div>
@@ -136,29 +136,29 @@
 
       <div class="d-flex justify-center mt-10">
         <v-btn
-          to="/history"
-          variant="outlined"
-          color="primary"
           class="view-more-btn px-10"
+          color="primary"
           rounded="xl"
           size="large"
+          to="/history"
+          variant="outlined"
         >
           View all history
-          <v-icon :icon="mdiHistory" end />
+          <v-icon end :icon="mdiHistory" />
         </v-btn>
       </div>
     </section>
 
-    <section class="section-spacer" ref="contactRef">
+    <section ref="contactRef" class="section-spacer">
       <h2 class="text-h4 font-weight-bold mb-8 text-center section-title">Contact</h2>
       <v-row justify="center">
         <v-col cols="12" md="8">
           <v-card class="bento-card pa-8">
             <v-form>
-              <v-text-field label="Name" variant="outlined" color="primary"></v-text-field>
-              <v-text-field label="Email" variant="outlined" color="primary"></v-text-field>
-              <v-textarea label="Message" variant="outlined" color="primary"></v-textarea>
-              <v-btn block color="primary" size="large" class="mt-4 font-weight-bold">Send Message</v-btn>
+              <v-text-field color="primary" label="Name" variant="outlined" />
+              <v-text-field color="primary" label="Email" variant="outlined" />
+              <v-textarea color="primary" label="Message" variant="outlined" />
+              <v-btn block class="mt-4 font-weight-bold" color="primary" size="large">Send Message</v-btn>
             </v-form>
           </v-card>
         </v-col>
@@ -244,13 +244,13 @@
       gsap.from(section, {
         scrollTrigger: {
           trigger: section,
-          start: "top 85%",
-          toggleActions: "play none none reverse"
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
         },
         opacity: 0,
         y: 60,
         duration: 1.2,
-        ease: "power2.out"
+        ease: 'power2.out',
       })
     })
   })
@@ -306,7 +306,7 @@ $transition-smooth: all 0.6s cubic-bezier(0.23, 1, 0.32, 1)
   overflow: hidden
   background: radial-gradient(circle at center, rgba(20, 20, 20, 0) 0%, $base-black 100%)
   color: #FFFFFF
-  
+
   // 高級感を出す微細なノイズ
   &::before
     content: ''
@@ -358,7 +358,7 @@ $transition-smooth: all 0.6s cubic-bezier(0.23, 1, 0.32, 1)
   transition: $transition-smooth
   background: rgba($accent-gold, 0.05) !important
   backdrop-filter: blur(4px)
-  
+
   &:hover
     background-color: rgba($accent-gold, 0.15) !important
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4)

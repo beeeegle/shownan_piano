@@ -2,7 +2,7 @@
   <v-footer class="footer-root py-16">
     <v-container>
       <v-row class="mb-12">
-        <v-col cols="12" md="5" class="text-center text-md-left">
+        <v-col class="text-center text-md-left" cols="12" md="5">
           <div class="brand-footer mb-6">
             <h2 class="text-h5 font-weight-bold letter-spacing-2">SHONAN</h2>
             <p class="text-caption gold-text">International Music Competition</p>
@@ -11,13 +11,13 @@
             <p class="mb-1">湘南国際音楽コンクール 事務局</p>
             <p class="mb-4">〒251-XXXX 神奈川県藤沢市湘南台 X-X-X</p>
             <div class="d-flex justify-center justify-md-start ga-4">
-              <a href="https://x.com/O_najimi_nasa" target="_blank" class="social-icon">
+              <a class="social-icon" href="https://x.com/O_najimi_nasa" target="_blank">
                 <v-icon :icon="mdiTwitter" size="20" />
               </a>
-              <a href="#" class="social-icon">
+              <a class="social-icon" href="#">
                 <v-icon icon="mdi-facebook" size="20" />
               </a>
-              <a href="#" class="social-icon">
+              <a class="social-icon" href="#">
                 <v-icon icon="mdi-instagram" size="20" />
               </a>
             </div>
@@ -44,7 +44,7 @@
                 <li><router-link to="/schedule">日程・会場</router-link></li>
               </ul>
             </v-col>
-            <v-col cols="12" sm="4" class="mt-6 mt-sm-0">
+            <v-col class="mt-6 mt-sm-0" cols="12" sm="4">
               <div class="footer-nav-title">SUPPORT</div>
               <ul class="footer-nav-list">
                 <li><router-link to="/contact">お問い合わせ</router-link></li>
@@ -63,8 +63,8 @@
         </div>
         <v-spacer />
         <div class="d-flex ga-4">
-          <a href="/privacy" class="hover-white">プライバシーポリシー</a>
-          <a href="/terms" class="hover-white">利用規約</a>
+          <a class="hover-white" href="/privacy">プライバシーポリシー</a>
+          <a class="hover-white" href="/terms">利用規約</a>
         </div>
       </v-row>
     </v-container>

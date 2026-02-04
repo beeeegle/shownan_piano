@@ -32,18 +32,8 @@
         variant="text"
         @click="langStore.toggle()"
       >
-        <v-icon start :icon="mdiTranslate" size="small"></v-icon>
+        <v-icon :icon="mdiTranslate" size="small" start />
         {{ langStore.lang === 'jp' ? 'EN' : 'JP' }}
-      </v-btn>
-
-      <v-btn
-        color="primary"
-        variant="flat"
-        rounded="pill"
-        class="font-weight-bold px-6 d-none d-sm-flex"
-        to="/application"
-      >
-        APPLY
       </v-btn>
 
       <v-app-bar-nav-icon class="d-md-none" @click="drawer = !drawer" />
@@ -52,24 +42,24 @@
 
   <v-navigation-drawer
     v-model="drawer"
+    class="drawer-glass"
     location="right"
     temporary
-    class="drawer-glass"
     width="300"
   >
     <div class="pa-6">
       <div class="d-flex justify-space-between align-center mb-10">
         <span class="text-h6 font-weight-bold text-primary">MENU</span>
-        <v-btn icon="mdi-close" variant="text" @click="drawer = false"></v-btn>
+        <v-btn :icon="mdiClose" variant="text" @click="drawer = false" />
       </div>
 
-      <v-list nav class="bg-transparent">
-        <v-list-item to="/about" title="ABOUT" class="mb-2" />
-        <v-list-item to="/jurors" title="JURORS" class="mb-2" />
-        <v-list-item to="/history" title="HISTORY" class="mb-2" />
-        <v-list-item to="/news" title="NEWS" class="mb-2" />
+      <v-list class="bg-transparent" nav>
+        <v-list-item class="mb-2" title="ABOUT" to="/about" />
+        <v-list-item class="mb-2" title="JURORS" to="/jurors" />
+        <v-list-item class="mb-2" title="HISTORY" to="/history" />
+        <v-list-item class="mb-2" title="NEWS" to="/news" />
         <v-divider class="my-6 opacity-10" />
-        <v-list-item to="/contact" title="CONTACT" />
+        <v-list-item title="CONTACT" to="/contact" />
       </v-list>
     </div>
   </v-navigation-drawer>
@@ -77,8 +67,8 @@
 
 <script setup lang="ts">
   import {
+    mdiClose,
     mdiTranslate,
-    mdiHistory,
   } from '@mdi/js'
   import { ref } from 'vue'
   import { RANKING_LABELS } from '@/constants/labels'
