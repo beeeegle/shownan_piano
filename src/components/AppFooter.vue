@@ -15,10 +15,10 @@
                 <v-icon :icon="mdiTwitter" size="20" />
               </a>
               <a class="social-icon" href="#">
-                <v-icon icon="mdi-facebook" size="20" />
+                <v-icon :icon="mdiFacebook" size="20" />
               </a>
               <a class="social-icon" href="#">
-                <v-icon icon="mdi-instagram" size="20" />
+                <v-icon :icon="mdiInstagram" size="20" />
               </a>
             </div>
           </div>
@@ -31,24 +31,24 @@
             <v-col cols="6" sm="4">
               <div class="footer-nav-title">ABOUT</div>
               <ul class="footer-nav-list">
-                <li><router-link to="/about">開催趣旨</router-link></li>
-                <li><router-link to="/jurors">審査員紹介</router-link></li>
-                <li><router-link to="/history">過去の記録</router-link></li>
+                <li><router-link to="#">開催趣旨</router-link></li>
+                <li><router-link to="#">審査員紹介</router-link></li>
+                <li><router-link to="#">過去の記録</router-link></li>
               </ul>
             </v-col>
             <v-col cols="6" sm="4">
               <div class="footer-nav-title">COMPETITION</div>
               <ul class="footer-nav-list">
-                <li><router-link to="/news">新着情報</router-link></li>
-                <li><router-link to="/application">応募要項</router-link></li>
-                <li><router-link to="/schedule">日程・会場</router-link></li>
+                <li><router-link to="#">新着情報</router-link></li>
+                <li><router-link to="#">応募要項</router-link></li>
+                <li><router-link to="#">日程・会場</router-link></li>
               </ul>
             </v-col>
             <v-col class="mt-6 mt-sm-0" cols="12" sm="4">
               <div class="footer-nav-title">SUPPORT</div>
               <ul class="footer-nav-list">
-                <li><router-link to="/contact">お問い合わせ</router-link></li>
-                <li><router-link to="/sponsors">協賛・寄付</router-link></li>
+                <li><router-link to="#">お問い合わせ</router-link></li>
+                <li><router-link to="#">協賛・寄付</router-link></li>
               </ul>
             </v-col>
           </v-row>
@@ -72,7 +72,7 @@
 </template>
 
 <script setup lang="ts">
-  import { mdiTwitter } from '@mdi/js'
+  import { mdiTwitter, mdiFacebook, mdiInstagram } from '@mdi/js'
 </script>
 
 <style scoped lang="sass">

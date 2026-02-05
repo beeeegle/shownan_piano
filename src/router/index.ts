@@ -15,6 +15,11 @@ export const routes = [
         name: '',
         component: () => import('@/pages/index.vue'),
       },
+      {
+        path: 'competitions/:id/participants',
+        name: 'competitions-participants',
+        component: () => import('@/pages/participants/detail.vue'),
+      },
     ],
   },
 ]

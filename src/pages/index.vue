@@ -1,38 +1,41 @@
 <template>
-  <section ref="heroRef" class="hero-section d-flex align-center justify-center">
-    <div class="hero-content text-center">
-      <div ref="countRef" class="text-overline gold-text mb-2">
-        — 第{{ currentCompetition.count }}回 開催 —
-      </div>
+  <div>
+    <section class="hero-section d-flex align-center justify-center">
+      <div class="hero-content text-center">
+        <div ref="countRef" class="text-overline gold-text mb-2">
+          — 第{{ currentCompetition.count }}回 開催 —
+        </div>
 
-      <h1 ref="titleRef" class="text-h2 font-weight-bold mb-2">
-        Shonan International
-      </h1>
-      <p ref="subtitleRef" class="text-h5 font-italic opacity-80 mb-10">
-        Music Competition {{ currentCompetition.year }}
-      </p>
-
-      <div v-if="currentCompetition.active" ref="actionRef">
-        <v-btn
-          class="hero-action-btn px-10"
-          color="primary"
-          rounded="pill"
-          size="x-large"
-          :to="`/competitions/${currentCompetition.id}`"
-          variant="outlined"
-        >
-          VIEW DETAILS
-          <v-icon end :icon="mdiArrowRight" />
-        </v-btn>
-        <p class="text-caption mt-4 opacity-60">
-          現在、本選へのエントリーを受け付けています
+        <h1 ref="titleRef" class="text-h2 font-weight-bold mb-2">
+          Shonan International
+        </h1>
+        <p ref="subtitleRef" class="text-h5 font-italic opacity-80 mb-10">
+          Music Competition {{ currentCompetition.year }}
         </p>
+
+        <div v-if="currentCompetition.active" ref="actionRef">
+          <v-btn
+            class="hero-action-btn px-10"
+            color="primary"
+            rounded="pill"
+            size="x-large"
+            :to="`/competitions/${currentCompetition.id}/participants`"
+            variant="outlined"
+          >
+            VIEW DETAILS
+            <v-icon end :icon="mdiArrowRight" />
+          </v-btn>
+          <p class="text-caption mt-4 opacity-60">
+            現在、本選へのエントリーを受け付けています
+          </p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
   <v-container class="py-12 main-container">
-    <section class="section-spacer text-center">
+    <section id="concept" class="section-spacer text-center">
+      <h2 class="text-h4 font-weight-bold mb-8 section-title">Concept</h2>
       <v-row justify="center">
         <v-col class="concept-text" cols="12" md="8">
           <p>湘南国際音楽コンクールは、美しい日本・湘南地域を拠点に誕生した新しいクラシック音楽のコンクールです。</p>
@@ -42,7 +45,7 @@
       </v-row>
     </section>
 
-    <section class="section-spacer">
+    <section id="news" class="section-spacer">
       <h2 class="text-h4 font-weight-bold mb-8 text-center section-title">News</h2>
       <v-row ref="newsRef">
         <v-col cols="12" md="8">
@@ -68,7 +71,7 @@
           color="primary"
           rounded="xl"
           size="large"
-          to="/news"
+          to="#"
           variant="outlined"
         >
           View more
@@ -77,7 +80,7 @@
       </div>
     </section>
 
-    <section ref="scheduleRef" class="section-spacer">
+    <section id="history" class="section-spacer">
       <h2 class="text-h4 font-weight-bold mb-8 text-center section-title">Schedule</h2>
       <v-card class="bento-card pa-6">
         <v-table class="bg-transparent text-white">
@@ -101,7 +104,7 @@
           color="primary"
           rounded="xl"
           size="large"
-          to="/news"
+          to="#"
           variant="outlined"
         >
           View more
@@ -115,7 +118,7 @@
 
       <v-row>
         <v-col v-for="h in historyCards" :key="h.year" cols="12" md="4">
-          <v-card class="bento-card history-card" hover :to="`/history/${h.year}`">
+          <v-card class="bento-card history-card" hover to="#">
             <v-img
               class="align-end"
               cover
@@ -140,7 +143,7 @@
           color="primary"
           rounded="xl"
           size="large"
-          to="/history"
+          to="#"
           variant="outlined"
         >
           View all history
@@ -149,7 +152,7 @@
       </div>
     </section>
 
-    <section ref="contactRef" class="section-spacer">
+    <section id="contact" class="section-spacer">
       <h2 class="text-h4 font-weight-bold mb-8 text-center section-title">Contact</h2>
       <v-row justify="center">
         <v-col cols="12" md="8">
