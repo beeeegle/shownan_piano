@@ -1,173 +1,175 @@
 <template>
   <div>
-    <section class="hero-section d-flex align-center justify-center">
-      <div class="hero-content text-center">
-        <div ref="countRef" class="text-overline gold-text mb-2">
-          — 第{{ currentCompetition.count }}回 開催 —
+    <div>
+      <section class="hero-section d-flex align-center justify-center">
+        <div class="hero-content text-center">
+          <div ref="countRef" class="text-overline gold-text mb-2">
+            — 第{{ currentCompetition.count }}回 開催 —
+          </div>
+
+          <h1 ref="titleRef" class="text-h2 font-weight-bold mb-2">
+            Shonan International
+          </h1>
+          <p ref="subtitleRef" class="text-h5 font-italic opacity-80 mb-10">
+            Music Competition {{ currentCompetition.year }}
+          </p>
+
+          <div v-if="currentCompetition.active" ref="actionRef">
+            <v-btn
+              class="hero-action-btn px-10"
+              color="primary"
+              rounded="pill"
+              size="x-large"
+              :to="'/competitions/' + currentCompetition.id + '/participants'"
+              variant="outlined"
+            >
+              VIEW DETAILS
+              <v-icon end :icon="mdiArrowRight" />
+            </v-btn>
+            <p class="text-caption mt-4 opacity-60">
+              現在、本選へのエントリーを受け付けています
+            </p>
+          </div>
         </div>
+      </section>
+    </div>
 
-        <h1 ref="titleRef" class="text-h2 font-weight-bold mb-2">
-          Shonan International
-        </h1>
-        <p ref="subtitleRef" class="text-h5 font-italic opacity-80 mb-10">
-          Music Competition {{ currentCompetition.year }}
-        </p>
+    <v-container class="py-12 main-container">
+      <section id="concept" class="section-spacer text-center">
+        <h2 class="text-h4 font-weight-bold mb-8 section-title">Concept</h2>
+        <v-row justify="center">
+          <v-col class="concept-text" cols="12" md="8">
+            <p>湘南国際音楽コンクールは、美しい日本・湘南地域を拠点に誕生した新しいクラシック音楽のコンクールです。</p>
+            <p>若き才能を支え、芸術的な交流を促進し、世界中の音楽家たちをつなぐことを目指しています。</p>
+            <p>音楽の力を共に分かち合いましょう。</p>
+          </v-col>
+        </v-row>
+      </section>
 
-        <div v-if="currentCompetition.active" ref="actionRef">
+      <section id="news" class="section-spacer">
+        <h2 class="text-h4 font-weight-bold mb-8 text-center section-title">News</h2>
+        <v-row ref="newsRef">
+          <v-col cols="12" md="8">
+            <v-card class="bento-card" height="400" hover image="https://picsum.photos/800/400?music=1">
+              <v-card-title class="text-white">Latest News</v-card-title>
+            </v-card>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-card class="bento-card mb-4" color="primary" height="192" hover>
+              <v-card-title>Important Notice</v-card-title>
+              <v-card-text>応募要項を公開しました</v-card-text>
+            </v-card>
+            <v-card class="bento-card" color="secondary" height="192" hover>
+              <v-card-title>Media</v-card-title>
+              <v-card-text>公式YouTubeチャンネル開設</v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+
+        <div class="d-flex justify-center mt-10">
           <v-btn
-            class="hero-action-btn px-10"
+            class="view-more-btn px-10"
             color="primary"
-            rounded="pill"
-            size="x-large"
-            :to="`/competitions/${currentCompetition.id}/participants`"
+            rounded="xl"
+            size="large"
+            to="news"
             variant="outlined"
           >
-            VIEW DETAILS
+            View more
             <v-icon end :icon="mdiArrowRight" />
           </v-btn>
-          <p class="text-caption mt-4 opacity-60">
-            現在、本選へのエントリーを受け付けています
-          </p>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section id="history" class="section-spacer">
+        <h2 class="text-h4 font-weight-bold mb-8 text-center section-title">Schedule</h2>
+        <v-card class="bento-card pa-6">
+          <v-table class="bg-transparent text-white">
+            <thead>
+              <tr>
+                <th class="text-left text-primary">DATE</th>
+                <th class="text-left text-primary">EVENT</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in scheduleItems" :key="item.date">
+                <td class="font-weight-bold">{{ item.date }}</td>
+                <td>{{ item.event }}</td>
+              </tr>
+            </tbody>
+          </v-table>
+        </v-card>
+        <div class="d-flex justify-center mt-10">
+          <v-btn
+            class="view-more-btn px-10"
+            color="primary"
+            rounded="xl"
+            size="large"
+            to="schedules"
+            variant="outlined"
+          >
+            View more
+            <v-icon end :icon="mdiArrowRight" />
+          </v-btn>
+        </div>
+      </section>
+
+      <section ref="historyRef" class="section-spacer">
+        <h2 class="text-h4 font-weight-bold mb-8 text-center section-title">History</h2>
+
+        <v-row>
+          <v-col v-for="h in historyCards" :key="h.year" cols="12" md="4">
+            <v-card class="bento-card history-card" hover to="#">
+              <v-img
+                class="align-end"
+                cover
+                height="200"
+                :src="h.image"
+              >
+                <v-card-title class="text-white bg-black-transition">{{ h.year }}</v-card-title>
+              </v-img>
+
+              <v-card-text class="pa-4">
+                <div class="text-overline text-primary">第{{ h.count }}回大会</div>
+                <div class="text-h6 font-weight-bold mb-2">{{ h.title }}</div>
+                <div class="text-body-2 line-clamp">{{ h.desc }}</div>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+
+        <div class="d-flex justify-center mt-10">
+          <v-btn
+            class="view-more-btn px-10"
+            color="primary"
+            rounded="xl"
+            size="large"
+            to="histories"
+            variant="outlined"
+          >
+            View all history
+            <v-icon end :icon="mdiHistory" />
+          </v-btn>
+        </div>
+      </section>
+
+      <section id="contact" class="section-spacer">
+        <h2 class="text-h4 font-weight-bold mb-8 text-center section-title">Contact</h2>
+        <v-row justify="center">
+          <v-col cols="12" md="8">
+            <v-card class="bento-card pa-8">
+              <v-form>
+                <v-text-field color="primary" label="Name" variant="outlined" />
+                <v-text-field color="primary" label="Email" variant="outlined" />
+                <v-textarea color="primary" label="Message" variant="outlined" />
+                <v-btn block class="mt-4 font-weight-bold" color="primary" size="large">Send Message</v-btn>
+              </v-form>
+            </v-card>
+          </v-col>
+        </v-row>
+      </section>
+    </v-container>
   </div>
-
-  <v-container class="py-12 main-container">
-    <section id="concept" class="section-spacer text-center">
-      <h2 class="text-h4 font-weight-bold mb-8 section-title">Concept</h2>
-      <v-row justify="center">
-        <v-col class="concept-text" cols="12" md="8">
-          <p>湘南国際音楽コンクールは、美しい日本・湘南地域を拠点に誕生した新しいクラシック音楽のコンクールです。</p>
-          <p>若き才能を支え、芸術的な交流を促進し、世界中の音楽家たちをつなぐことを目指しています。</p>
-          <p>音楽の力を共に分かち合いましょう。</p>
-        </v-col>
-      </v-row>
-    </section>
-
-    <section id="news" class="section-spacer">
-      <h2 class="text-h4 font-weight-bold mb-8 text-center section-title">News</h2>
-      <v-row ref="newsRef">
-        <v-col cols="12" md="8">
-          <v-card class="bento-card" height="400" hover image="https://picsum.photos/800/400?music=1">
-            <v-card-title class="text-white">Latest News</v-card-title>
-          </v-card>
-        </v-col>
-        <v-col cols="12" md="4">
-          <v-card class="bento-card mb-4" color="primary" height="192" hover>
-            <v-card-title>Important Notice</v-card-title>
-            <v-card-text>応募要項を公開しました</v-card-text>
-          </v-card>
-          <v-card class="bento-card" color="secondary" height="192" hover>
-            <v-card-title>Media</v-card-title>
-            <v-card-text>公式YouTubeチャンネル開設</v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
-
-      <div class="d-flex justify-center mt-10">
-        <v-btn
-          class="view-more-btn px-10"
-          color="primary"
-          rounded="xl"
-          size="large"
-          to="#"
-          variant="outlined"
-        >
-          View more
-          <v-icon end :icon="mdiArrowRight" />
-        </v-btn>
-      </div>
-    </section>
-
-    <section id="history" class="section-spacer">
-      <h2 class="text-h4 font-weight-bold mb-8 text-center section-title">Schedule</h2>
-      <v-card class="bento-card pa-6">
-        <v-table class="bg-transparent text-white">
-          <thead>
-            <tr>
-              <th class="text-left text-primary">DATE</th>
-              <th class="text-left text-primary">EVENT</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="item in scheduleItems" :key="item.date">
-              <td class="font-weight-bold">{{ item.date }}</td>
-              <td>{{ item.event }}</td>
-            </tr>
-          </tbody>
-        </v-table>
-      </v-card>
-      <div class="d-flex justify-center mt-10">
-        <v-btn
-          class="view-more-btn px-10"
-          color="primary"
-          rounded="xl"
-          size="large"
-          to="#"
-          variant="outlined"
-        >
-          View more
-          <v-icon end :icon="mdiArrowRight" />
-        </v-btn>
-      </div>
-    </section>
-
-    <section ref="historyRef" class="section-spacer">
-      <h2 class="text-h4 font-weight-bold mb-8 text-center section-title">History</h2>
-
-      <v-row>
-        <v-col v-for="h in historyCards" :key="h.year" cols="12" md="4">
-          <v-card class="bento-card history-card" hover to="#">
-            <v-img
-              class="align-end"
-              cover
-              height="200"
-              :src="h.image"
-            >
-              <v-card-title class="text-white bg-black-transition">{{ h.year }}</v-card-title>
-            </v-img>
-
-            <v-card-text class="pa-4">
-              <div class="text-overline text-primary">第{{ h.count }}回大会</div>
-              <div class="text-h6 font-weight-bold mb-2">{{ h.title }}</div>
-              <div class="text-body-2 line-clamp">{{ h.desc }}</div>
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
-
-      <div class="d-flex justify-center mt-10">
-        <v-btn
-          class="view-more-btn px-10"
-          color="primary"
-          rounded="xl"
-          size="large"
-          to="#"
-          variant="outlined"
-        >
-          View all history
-          <v-icon end :icon="mdiHistory" />
-        </v-btn>
-      </div>
-    </section>
-
-    <section id="contact" class="section-spacer">
-      <h2 class="text-h4 font-weight-bold mb-8 text-center section-title">Contact</h2>
-      <v-row justify="center">
-        <v-col cols="12" md="8">
-          <v-card class="bento-card pa-8">
-            <v-form>
-              <v-text-field color="primary" label="Name" variant="outlined" />
-              <v-text-field color="primary" label="Email" variant="outlined" />
-              <v-textarea color="primary" label="Message" variant="outlined" />
-              <v-btn block class="mt-4 font-weight-bold" color="primary" size="large">Send Message</v-btn>
-            </v-form>
-          </v-card>
-        </v-col>
-      </v-row>
-    </section>
-  </v-container>
 </template>
 
 <script setup lang="ts">

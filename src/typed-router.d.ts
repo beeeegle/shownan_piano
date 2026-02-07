@@ -19,7 +19,11 @@ declare module 'vue-router/auto-routes' {
    */
   export interface RouteNamedMap {
     '/': RouteRecordInfo<'/', '/', Record<never, never>, Record<never, never>>,
+    '/list/history': RouteRecordInfo<'/list/history', '/list/history', Record<never, never>, Record<never, never>>,
+    '/list/news': RouteRecordInfo<'/list/news', '/list/news', Record<never, never>, Record<never, never>>,
+    '/list/schedule': RouteRecordInfo<'/list/schedule', '/list/schedule', Record<never, never>, Record<never, never>>,
     '/participants/detail': RouteRecordInfo<'/participants/detail', '/participants/detail', Record<never, never>, Record<never, never>>,
+    '/visitors/detail': RouteRecordInfo<'/visitors/detail', '/visitors/detail', Record<never, never>, Record<never, never>>,
   }
 
   /**
@@ -37,8 +41,24 @@ declare module 'vue-router/auto-routes' {
       routes: '/'
       views: never
     }
+    'src/pages/list/history.vue': {
+      routes: '/list/history'
+      views: never
+    }
+    'src/pages/list/news.vue': {
+      routes: '/list/news'
+      views: never
+    }
+    'src/pages/list/schedule.vue': {
+      routes: '/list/schedule'
+      views: never
+    }
     'src/pages/participants/detail.vue': {
       routes: '/participants/detail'
+      views: never
+    }
+    'src/pages/visitors/detail.vue': {
+      routes: '/visitors/detail'
       views: never
     }
   }
